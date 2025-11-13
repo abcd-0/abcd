@@ -1,0 +1,30 @@
+profits = [60, 100, 120]   # profit of each parcel
+weights = [10, 20, 30]     # weight of each parcel
+capacity = 50              # truck capacity
+
+
+ratio = []
+for i in range(len(profits)):
+    ratio.append(profits[i] / weights[i])
+
+
+items = list(zip(profits, weights, ratio))
+items.sort(key=lambda x: x[2], reverse=True)
+
+
+total_profit = 0
+current_weight = 0
+
+for profit, weight, r in items:
+    if current_weight + weight <= capacity:
+        # take full parcel
+        current_weight += weight
+        total_profit += profit
+    else:
+        # take partial parcel
+        remain = capacity - current_weight
+        total_profit += profit * (remain / weight)
+        break   # truck is full
+
+
+print("Maximum Profit =", total_profit)
