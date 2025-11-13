@@ -1,0 +1,19 @@
+def naive_string_match(text, pattern):
+    n = len(text)        # length of text
+    m = len(pattern)     # length of pattern
+    
+    print("Text:", text)
+    print("Pattern:", pattern)
+    print("\nPattern found at indices:", end=" ")
+
+    # Slide the pattern one by one
+    for i in range(n - m + 1):
+        # Check if substring from i matches the pattern
+        if text[i:i+m] == pattern:
+            print(i, end=" ")
+
+# Example
+text = "AABAACAADAABAABA"
+pattern = "AABA"
+naive_string_match(text, pattern)
+        
