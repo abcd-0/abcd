@@ -1,0 +1,34 @@
+def merge_sort(orders):
+    if len(orders) > 1:
+        mid = len(orders) // 2
+        left = orders[:mid]
+        right = orders[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
+
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i][1] < right[j][1]:
+                orders[k] = left[i]
+                i += 1
+            else:
+                orders[k] = right[j]
+                j += 1
+            k += 1
+
+        while i < len(left):
+            orders[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            orders[k] = right[j]
+            j += 1
+            k += 1
+
+orders = [("Order1", 3), ("Order2", 1), ("Order3", 4), ("Order4", 2)]
+print("Before sorting:", orders)
+merge_sort(orders)
+print("After sorting by delivery time:", orders)
+
